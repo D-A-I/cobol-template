@@ -4,9 +4,9 @@ FROM debian:${VARIANT}
 
 # 1. コンテナの日本語化開始 （以下 debian 公式の手順）
 RUN apt-get update && apt-get install -y \
-  # a) ロケールのバイナリ取得（locale-all という、コンパイル済のパッケージもあります）
+  # a) ロケールのバイナリ取得
   locales \
-  # b) localedef コマンドでロケールの環境定義
+  # b) ロケールのコンパイル（locale-gen があればそちらを使う）
   && localedef -i ja_JP -c -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8
 # 日本語指定
 ENV LANG ja_JP.UTF-8
