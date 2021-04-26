@@ -11,6 +11,11 @@ RUN apt-get update && apt-get install -y \
 # 日本語指定
 ENV LANG ja_JP.UTF-8
 
+# タイムゾーンの変更（Asia/Tokyo のシンボリックリンクを作成する。通常のコピーでも大丈夫）
+RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
+  # 下はあまり使われないようだが、念のため
+  && echo Asia/Tokyo > /etc/timezone
+
 # 2. COBOL 取得（＊）
 RUN apt-get install -y \
   open-cobol \
