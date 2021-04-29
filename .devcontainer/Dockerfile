@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
 # 日本語指定
 ENV LANG ja_JP.UTF-8
 
-# タイムゾーンの変更（Asia/Tokyo のシンボリックリンクを作成する。通常のコピーでも大丈夫）
+# タイムゾーンの変更（Asia/Tokyo のシンボリックリンクを作成する。通常のコピーでも大丈夫）（＊）
 RUN ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
   # 下はあまり使われないようだが、念のため
   && echo Asia/Tokyo > /etc/timezone
@@ -25,7 +25,7 @@ RUN apt-get install -y \
 # 3. apt-get した後に良くやるおまじない。キャッシュの削除（＊）
 RUN rm -rf /var/lib/apt/lists/*
 
-# ＊ 本来なら最初の RUN と一緒にまとめて実行するが、説明のため分けておく
+# ＊ 本来なら最初の RUN と一緒にまとめて実行するが、説明のため何回かに分けておく
 
 # ＊おまけ＊
 # 以下を指定すると、対話型のコマンドが問答無用で黙るようになるが、docker 公式で非推奨だよ
